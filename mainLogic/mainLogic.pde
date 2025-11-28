@@ -1,9 +1,6 @@
 // Main logic for my game about bouncing. Help the king of the bouncy castle save the kingdom from the evil black holes!
 
 
-//IMPORTS
-import org.gicentre.handy.*;
-
 //DELCARE VARIABLES
 
 //--Game State

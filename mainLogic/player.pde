@@ -1,6 +1,3 @@
-//IMPORTS
-import org.gicentre.handy.*;
-
 class Player {
 
   //VARIBLES
