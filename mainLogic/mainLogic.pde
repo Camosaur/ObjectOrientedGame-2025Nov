@@ -1,6 +1,9 @@
 // Main logic for my game about bouncing. Help the king of the bouncy castle save the kingdom from the evil black holes!
 
 
+//IMPORTS
+import org.gicentre.handy.*;
+
 //DELCARE VARIABLES
 
 //--Game State
@@ -12,7 +15,7 @@ int enemiesKIlled;
 ArrayList enemyList;
 
 //--TODO Referance Variables
-//Player player;
+Player player;
 //BallManager ballMan;
 //EnemyManager enemyMan;
 
@@ -22,6 +25,7 @@ void setup(){
   frameRate(60);
   
   //-- TODO Instantiate objects HERE
+  player = new Player();
 }
 
 void draw(){
@@ -55,6 +59,8 @@ void gameOverScreen(){
 }
 
 void gameDraw(){
+  player.update();
+  player.display();
 
 }
 
