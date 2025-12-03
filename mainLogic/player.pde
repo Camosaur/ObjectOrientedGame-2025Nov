@@ -29,7 +29,7 @@ class Player {
     isDashing = false;
 
     //--Dash Timer
-    maxDashCooldown = 60*2; //2 Seconds?
+    maxDashCooldown = 60*3; //3 Seconds?
     dashCount = maxDashCooldown;
   }
 

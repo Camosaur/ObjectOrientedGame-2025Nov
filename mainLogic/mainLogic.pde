@@ -1,4 +1,6 @@
 // Main logic for my game about bouncing. Help the king of the bouncy castle save the kingdom from the evil black holes!
+//By Cameron Pletsch
+//Coded on December 3rd, 2025
 
 
 //DELCARE VARIABLES
@@ -14,7 +16,8 @@ ArrayList enemyList;
 //--TODO Referance Variables
 Player player;
 BallManager ballMan;
-//EnemyManager enemyMan;
+Enemy enemyTest;
+
 
 void setup() {
   windowTitle("King of the Bouncy Castle");
@@ -60,6 +63,9 @@ void gameDraw() {
   ballMan.update();
 
   //Enemy Stuff
+  
+  enemyTest.update();
+  enemyTest.display();
 
   //Player stuff
   player.update();
@@ -92,4 +98,5 @@ void startGame() {
   //---Instantiate new objects
   ballMan = new BallManager();
   player = new Player();
+  enemyTest = new Enemy(player, ballMan);
 }

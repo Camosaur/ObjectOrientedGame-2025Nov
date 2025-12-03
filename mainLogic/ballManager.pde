@@ -47,7 +47,7 @@ class BallManager {
   }
   
   void enemyDeath(PVector position){
-    for (int iteration = 1; iteration <= 25; iteration++) {
+    for (int iteration = 1; iteration <= 10; iteration++) {
       spawn(position);
     }
   }
