@@ -79,6 +79,13 @@ class Player {
     if (bounces >= maxBounces) {
       isDashing = false;
     }
+    
+    //Guard the top of the screen to protect agaist a stupid glitch. If the player is too far off the screen, just teleport it backwards a little.
+    
+    //--Top
+    if(position.y < -10){
+      position.y = 30;
+    }
 
     //Countdown the cooldown
     dashCount--;

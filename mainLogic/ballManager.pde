@@ -47,13 +47,13 @@ class BallManager {
   }
   
   void enemyDeath(PVector position){
-    for (int iteration = 1; iteration <= 10; iteration++) {
+    for (int iteration = 1; iteration <= 25; iteration++) {
       spawn(position);
     }
   }
 
   void hurt() {
-    int hurtCount = 50; //This is how much balls will be downed when the player is hit
+    int hurtCount = 100; //This is how much balls will be downed when the player is hit
     for (Ball ball : balls) {
       hurtCount--;
       ball.isFalling = true;

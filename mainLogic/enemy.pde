@@ -6,6 +6,7 @@ class Enemy {
   Player player; //A reference to the player. So they know if it was dashing on collision
   BallManager ballMan; //A reference to BallManager, as enemies are the main thing that interacts with it
   boolean isDead; //So it can mark itself as dead, and main logic can delete it's instance
+  boolean wasKilled = false; //Ugh, scope issue. I need to add this in order for the enemyManager to know if it was killed by the player dashing, for the kill count
   int diameter; //So it can keep growing
   int sizeGrowthTimer = 10; //So I can make it get 2 pixels wider fraction of a second
   int sizeGrowthCountdown = 10;
@@ -48,7 +49,7 @@ class Enemy {
     }
 
     //Handle collision
-    if (dist(player.position.x, player.position.y, position.x, position.y) <= diameter/2) { //If you are colliding with the player...
+    if (dist(player.position.x, player.position.y, position.x, position.y) <= diameter/2+25) { //If you are colliding with the player...
       collision(player.isDashing);
     }
   }
@@ -64,6 +65,7 @@ class Enemy {
     }
     else{
       ballMan.enemyDeath(position);
+      wasKilled = true; //I was killed by the player using dash!
     }
   }
 }

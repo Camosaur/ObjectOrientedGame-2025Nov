@@ -9,14 +9,10 @@
 boolean isGameOver = true;
 boolean isFirstGame = true;
 
-//--TODO put these in a designated EnemyManager Object. It seems better that way
-int enemiesKIlled;
-ArrayList enemyList;
-
 //--TODO Referance Variables
 Player player;
 BallManager ballMan;
-Enemy enemyTest;
+EnemyManager enemyMan;
 
 
 void setup() {
@@ -33,6 +29,9 @@ void setup() {
 void draw() {
   background(255);
 
+  //Ball Stuff- I want to display the balls no matter what
+  ballMan.update();
+  
   //What state are we in?
   if (isGameOver) {
     gameOverScreen();
@@ -44,13 +43,16 @@ void draw() {
 void gameOverScreen() {
   //DRAW THE GAME OVER SCREEN
 
+  //Make sure the frameRate is 60
+  frameRate(60);
+  
   //--In order to stop irrelevent information from appearing before the user has played the game
   textSize(width*0.05);
   textAlign(CENTER);
   fill(0);
 
   if (!isFirstGame) {
-    text("Game Over! You killed CHANGE THIS enemies!", width/2, height*0.25);
+    text("Game Over! You killed "+ enemyMan.enemiesKilled +" enemies!", width/2, height*0.25);
   }
 
   //--Next Text Call
@@ -59,17 +61,15 @@ void gameOverScreen() {
 
 void gameDraw() {
 
-  //Ball Stuff
-  ballMan.update();
-
   //Enemy Stuff
-  
-  enemyTest.update();
-  enemyTest.display();
+  enemyMan.update();
 
   //Player stuff
   player.update();
   player.display();
+  
+  //Check if we are dead!!!!
+  isGameOver = !ballMan.isAlive;
 }
 
 void mousePressed() {
@@ -87,7 +87,7 @@ void mouseReleased() {
   if (player.canDash()) {
     player.dash();
   }
-  frameRate(60);
+  frameRate(60+enemyMan.enemiesKilled); //Add a bit to the framerate to scale with enemiesKilled. This is my jank attempt to increase difficulty as the game goes on.
 }
 
 void startGame() {
@@ -98,5 +98,5 @@ void startGame() {
   //---Instantiate new objects
   ballMan = new BallManager();
   player = new Player();
-  enemyTest = new Enemy(player, ballMan);
+  enemyMan = new EnemyManager(player, ballMan);
 }
