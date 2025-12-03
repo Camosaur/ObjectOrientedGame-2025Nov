@@ -9,7 +9,10 @@
 boolean isGameOver = true;
 boolean isFirstGame = true;
 
-//--TODO Referance Variables
+//Game mechanic
+boolean isAiming = false;
+
+//Referance Variables
 Player player;
 BallManager ballMan;
 EnemyManager enemyMan;
@@ -78,16 +81,21 @@ void mousePressed() {
     return;
   }
 
-  //Slow down framerate so player may aim
-  frameRate(30);
+  if(player.canDash()){
+      //Slow down framerate so player may aim
+      frameRate(30);
+      isAiming = true;
+  }
 }
 
 void mouseReleased() {
+  
   //Restore framerate and make the player dash
-  if (player.canDash()) {
+  if (isAiming) {
     player.dash();
+    frameRate(60+enemyMan.enemiesKilled); //Add a bit to the framerate to scale with enemiesKilled. This is my jank attempt to increase difficulty as the game goes on.
+    isAiming = false;
   }
-  frameRate(60+enemyMan.enemiesKilled); //Add a bit to the framerate to scale with enemiesKilled. This is my jank attempt to increase difficulty as the game goes on.
 }
 
 void startGame() {

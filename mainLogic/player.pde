@@ -39,11 +39,16 @@ class Player {
     translate(position.x, position.y);
     rotate(rotationAngle);
 
-    //Body- Red if not dashing, Green if Dashing
+    //Body- Red if not dashing, Green if Dashing, Blue if you can dash
     if (isDashing) {
       fill(0, 255, 0);
     } else {
-      fill(255, 0, 0);
+      if (canDash()){
+        fill(0, 175, 255);
+      }
+      else{
+        fill(255, 0, 0);
+      }
     }
     ellipse(0, 0, 60, 60);
 
@@ -81,9 +86,7 @@ class Player {
     }
     
     //Guard the top of the screen to protect agaist a stupid glitch. If the player is too far off the screen, just teleport it backwards a little.
-    
-    //--Top
-    if(position.y < -10){
+    if(position.y < 0){
       position.y = 30;
     }
 
