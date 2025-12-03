@@ -89,6 +89,7 @@ void startGame() {
   isGameOver = false;
   isFirstGame = false;
 
-  //---Call startgame for BallManager too
-  ballMan.startGame();
+  //---Instantiate new objects
+  ballMan = new BallManager();
+  player = new Player();
 }

@@ -1,11 +1,15 @@
 class BallManager {
 
+  //Variables 
+  
   ArrayList<Ball> balls;
   boolean isAlive; //checks weather the player is alive based on how many balls are left
 
   BallManager() {
 
     balls = new ArrayList<Ball>();
+    
+    startGame();
   }
 
   void update() {
@@ -39,6 +43,12 @@ class BallManager {
   void startGame() {
     for (int iteration = 1; iteration <= 200; iteration++) {
       spawn(new PVector(random(0, width), random(0, height)));
+    }
+  }
+  
+  void enemyDeath(PVector position){
+    for (int iteration = 1; iteration <= 25; iteration++) {
+      spawn(position);
     }
   }
 
