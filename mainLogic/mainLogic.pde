@@ -13,7 +13,7 @@ ArrayList enemyList;
 
 //--TODO Referance Variables
 Player player;
-//BallManager ballMan;
+BallManager ballMan;
 //EnemyManager enemyMan;
 
 void setup() {
@@ -24,6 +24,7 @@ void setup() {
 
   //-- TODO Instantiate objects HERE
   player = new Player();
+  ballMan = new BallManager();
 }
 
 void draw() {
@@ -54,6 +55,13 @@ void gameOverScreen() {
 }
 
 void gameDraw() {
+
+  //Ball Stuff
+  ballMan.update();
+
+  //Enemy Stuff
+
+  //Player stuff
   player.update();
   player.display();
 }
@@ -80,4 +88,7 @@ void startGame() {
   //Does all the nessisary steps to start the game
   isGameOver = false;
   isFirstGame = false;
+
+  //---Call startgame for BallManager too
+  ballMan.startGame();
 }
