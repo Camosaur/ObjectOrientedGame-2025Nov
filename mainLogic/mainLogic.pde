@@ -16,75 +16,68 @@ Player player;
 //BallManager ballMan;
 //EnemyManager enemyMan;
 
-void setup(){
+void setup() {
   windowTitle("King of the Bouncy Castle");
   size(1000, 800);
   background(255);
   frameRate(60);
-  
+
   //-- TODO Instantiate objects HERE
   player = new Player();
 }
 
-void draw(){
+void draw() {
   background(255);
-  
+
   //What state are we in?
-  if (isGameOver){
+  if (isGameOver) {
     gameOverScreen();
-  }
-  else{
+  } else {
     gameDraw();
   }
-
 }
 
-void gameOverScreen(){
+void gameOverScreen() {
   //DRAW THE GAME OVER SCREEN
-  
+
   //--In order to stop irrelevent information from appearing before the user has played the game
- textSize(width*0.05);
- textAlign(CENTER);
- fill(0);
-    
-  if(!isFirstGame){
+  textSize(width*0.05);
+  textAlign(CENTER);
+  fill(0);
+
+  if (!isFirstGame) {
     text("Game Over! You killed CHANGE THIS enemies!", width/2, height*0.25);
   }
-  
+
   //--Next Text Call
   text("Click the mouse to PLAY!", width/2, height*0.75);
-  
 }
 
-void gameDraw(){
+void gameDraw() {
   player.update();
   player.display();
-
 }
 
-void mousePressed(){
-  if(isGameOver){
+void mousePressed() {
+  if (isGameOver) {
     startGame();
     return;
   }
-  
+
   //Slow down framerate so player may aim
   frameRate(30);
-
-
 }
 
-void mouseReleased(){
- //Restore framerate and make the player dash
- if (player.canDash()){
+void mouseReleased() {
+  //Restore framerate and make the player dash
+  if (player.canDash()) {
     player.dash();
- }
- frameRate(60);
+  }
+  frameRate(60);
 }
 
-void startGame(){
+void startGame() {
   //Does all the nessisary steps to start the game
   isGameOver = false;
   isFirstGame = false;
-  
 }
