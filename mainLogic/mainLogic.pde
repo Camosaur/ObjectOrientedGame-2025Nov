@@ -17,6 +17,7 @@ Player player;
 //EnemyManager enemyMan;
 
 void setup(){
+  windowTitle("King of the Bouncy Castle");
   size(1000, 800);
   background(255);
   frameRate(60);
@@ -66,7 +67,19 @@ void mousePressed(){
     startGame();
     return;
   }
+  
+  //Slow down framerate so player may aim
+  frameRate(30);
 
+
+}
+
+void mouseReleased(){
+ //Restore framerate and make the player dash
+ if (player.canDash()){
+    player.dash();
+ }
+ frameRate(60);
 }
 
 void startGame(){
